@@ -15,7 +15,7 @@ export default () => {
     weather.getAllWeather(function(err, res){
       setData({
         temp: res.main.temp,
-        condition: res.weather[0].main,
+        condition: res.weather[0].description,
         img: res.weather[0].icon
       })
     });
@@ -24,15 +24,12 @@ export default () => {
   const imgUrl = data && `http://openweathermap.org/img/wn/${data.img}@2x.png`
 
   return (
-    <div className="fadeInDown">
+    <div className="weather fadeInDown">
       <h2>Current Weather in Austin, TX</h2>
-      <p>{data && data.temp} F</p>
-      <p>
-        {data && data.condition}
-        <span>
-          <img src={imgUrl} alt="weather-icon" />
-        </span>
-      </p>
+      <div className="weather-info">
+        <img src={imgUrl} className="weather-icon" alt="weather-icon" />
+        <p>{data && data.temp} F</p>
+      </div>
     </div>
   );
 };

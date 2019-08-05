@@ -37,7 +37,7 @@ export default () => {
 
   return (
     <div>
-      <form onSubmit={()=> console.log('test')}>
+      <form>
         <select onChange={handleChange}>
           {renderLocations()}
         </select>

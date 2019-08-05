@@ -21,9 +21,9 @@ const Map = () => {
     })
   };
   return (
-    <div className="map fadeInDown">
+    <div className="fadeInDown">
       <h1>GREENBELT NOW</h1>
-      <img src="https://i.imgur.com/5xW6mRh.png" alt="greenbelt-map" useMap="#Map" />
+      <img src="https://i.imgur.com/5xW6mRh.png" className="map" alt="greenbelt-map" useMap="#Map" />
       <map name="Map" id="Map">
         <area
           alt="Lost Creek"

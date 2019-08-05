@@ -5,9 +5,8 @@ import { ResultsContext, LoadingContext } from "../Store";
 
 const Results = () => {
   const results = useContext(ResultsContext).state;
-  const isLoading= useContext(LoadingContext).state;
-  const value = useContext(ResultsContext);
-  console.log(value)
+  const isLoading = useContext(LoadingContext).state;
+
   const renderResults = () => {
     const location = results.location;
     return (
@@ -61,10 +60,19 @@ const Results = () => {
     );
   };
 
-  console.log(results);
+  const renderLoading = () => {
+    return (
+      <div className="loading">
+        <div className="droplet" />
+        <div className="droplet" />
+        <div className="droplet" />
+      </div>
+    );
+  };
+
   return (
     <div>
-      {isLoading && <p>...loading...</p>}
+      {isLoading && renderLoading()}
       {results && renderResults()}
     </div>
   );
