@@ -1,48 +1,75 @@
-import React, {useContext} from "react";
+import React, { useContext, useState } from "react";
 
-import locations from "../locations.json";
+import{ locations }from "../staticData";
 
 import helpers from "../helpers";
 
-import { ResultsContext, LoadingContext } from '../Store';
+import { ResultsContext, LoadingContext } from "../Store";
 
 export default () => {
   const setIsLoading = useContext(LoadingContext).setState;
-
   const setResults = useContext(ResultsContext).setState;
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLocation, setLocation] = useState("Select Location");
 
   const renderLocations = () => {
     const locationKeys = Object.keys(locations);
-    return locationKeys.map((location, i) => (
-      <option key={i} value={location}>
-        {locations[location].name}
-      </option>
-    ));
+
+    return locationKeys
+      // do not display selected location
+      .filter(location => location !== selectedLocation)
+      .map((location, i) => {
+        return (
+          <li
+            key={i}
+            className="item"
+            data-id={location}
+            onClick={handleSelect}
+          >
+            {locations[location].name}
+          </li>
+        );
+      });
   };
 
-  const handleChange = e => {
-    const locationID = e.target.value;
-    setIsLoading(true);
-    helpers.getWaterData(locationID)
-    .then(response => {
-      setIsLoading(false);
-      setResults(response);
-    })
-    .catch(error => {
-      setIsLoading(false);
-      setResults({error});
-    })
-    
+  const handleSelect = e => {
+    const locationID = e.currentTarget.dataset.id;
+    // run getWaterData if new location is selected
+    if (selectedLocation !== locations[locationID]) {
+      setLocation(locationID);
+      setIsLoading(true);
+      helpers
+        .getWaterData(locationID)
+        .then(response => {
+          setIsLoading(false);
+          setResults(response);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          setResults({ error });
+        });
+    }
+  };
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  let dropdownClass = "dropdown";
+
+  if (isOpen) {
+    dropdownClass += " active";
   }
 
+  const title =
+    (locations[selectedLocation] && locations[selectedLocation].name) ||
+    "Select Location";
+
   return (
-    <div>
-      <form>
-        <select onChange={handleChange}>
-          {renderLocations()}
-        </select>
-      </form>
+    <div className={dropdownClass} onClick={toggleDropdown}>
+      <div className="title">{title}</div>
+      <ul className="list">{renderLocations()}</ul>
     </div>
-    
   );
 };

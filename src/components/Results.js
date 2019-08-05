@@ -10,9 +10,10 @@ const Results = () => {
   const renderResults = () => {
     const location = results.location;
     return (
-      <div className="results fadeInUp text-center">
+      <div className="results">
         <h2>{location.name}</h2>
         <p>{location.address}</p>
+        <p>{results.gaugeReference}</p>
         <p className="info">{location.info}</p>
         <div>
           <div className="row">
@@ -50,10 +51,9 @@ const Results = () => {
             />
           </div>
           <div className="row">
-            <p>
+            <p className="condition">
               {results.levelCondition} {results.flowCondition}
             </p>
-            <p>{results.overallCondition}</p>
           </div>
         </div>
       </div>
@@ -70,10 +70,11 @@ const Results = () => {
     );
   };
 
+  // display results
   return (
-    <div>
+    <div className="results-container fadeInUp">
       {isLoading && renderLoading()}
-      {results && renderResults()}
+      {results && !isLoading && renderResults()}
     </div>
   );
 };

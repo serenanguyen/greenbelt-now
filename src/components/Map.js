@@ -96,7 +96,7 @@ const Map = () => {
           coords="413,171,431,191"
         />
         <area
-          alt="Barton Creek Above Barton Springs Pool"
+          alt="Above Barton Springs"
           id="aboveBarton"
           onClick={eventKey => {
             onClick(eventKey);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import locations from "./locations.json";
+import { locations, gaugeLocations } from "./staticData";
 
 const helpers = {
   runQuery(locationID) {
@@ -23,7 +23,10 @@ const helpers = {
         }
         waterData.location = locations[locationName];
 
-
+        // gauge reference
+        const gaugeID = gaugeLocations[locationID];
+        waterData.gaugeReference = `Water data is being pulled from the gauge locatated at ${locations[gaugeID].name}.`
+         
         const dataPoints = response.data.value.timeSeries;
 
         dataPoints.forEach(data => {
