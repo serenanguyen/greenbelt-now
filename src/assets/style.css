@@ -1,5 +1,6 @@
 :root {
   --accent-color: #055a5b;
+  --secondary-accent-color: #b9e0cf;
 }
 
 body {
@@ -17,7 +18,7 @@ code {
 }
 
 .App {
-  min-height: calc(100vh - 2rem);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,11 +27,17 @@ code {
   position: relative;
 }
 
+.map {
+  width: 100%;
+  max-width: 640px;
+}
+
 .weather-info {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  margin-bottom: 6rem;
 }
 
 .weather-icon {
@@ -48,9 +55,23 @@ code {
   align-items: center;
 }
 
+.footer a {
+  padding: 0 3px;
+}
+
 .row {
   display: flex;
   justify-content: center;
+}
+
+.query-container {
+  height: 38rem;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-left: 2rem;
 }
 
 .condition {
@@ -65,6 +86,14 @@ h2 {
   color: var(--accent-color);
 }
 
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
 a {
   color: var(--accent-color);
 }
@@ -73,6 +102,10 @@ a {
 
 .dropdown {
   cursor: pointer;
+  width: 16rem;
+  position: absolute;
+  top: 8rem;
+  z-index: 3;
 }
 
 .dropdown ul,
@@ -93,28 +126,28 @@ a {
 
 .dropdown li {
   border-top: none;
+  background-color: white;
 }
 
 .dropdown li:hover {
-  background-color: #B9E0CF;
+  background-color: var(--secondary-accent-color);
 }
 
 .dropdown .title {
-  margin: 0em 4em;
   position: relative;
   border-radius: 5px;
 }
 
 .dropdown .title:after {
-  content: '';
+  content: "";
   position: absolute;
-  right: .5rem;
+  right: 0.5rem;
   height: 1.5rem;
   width: 1.5rem;
-  background: url('./caret-down.svg') no-repeat center center;
+  background: url("./caret-down.svg") no-repeat center center;
   background-size: contain;
   color: var(--accent-color);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .dropdown.active .title {
@@ -123,7 +156,7 @@ a {
 
 .dropdown.active .title:after {
   transform: rotate(180deg);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .dropdown .list .item:last-child {
@@ -135,22 +168,22 @@ a {
 }
 
 .dropdown .list {
-    position: relative;
-    padding: 0em 4em;
-    border: 0;
-    border-top: 0;
-    overflow: hidden;
-    max-height:0;
-    margin: 0;
-    transition: all 0.5s;
-    border-radius: 0px 0px 5px 5px;
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-top: 0;
+  overflow: hidden;
+  max-height: 0;
+  margin: 0;
+  transition: all 0.5s;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .dropdown.active .list {
   transition: all 1s;
-    max-height: auto;
-    min-height:1px;
-    max-height:999px;
+  max-height: auto;
+  min-height: 1px;
+  max-height: 999px;
 }
 
 /* LOADING DROPLET ANIMATION */
@@ -218,16 +251,21 @@ a {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1000px) {
   .App {
+    min-height: calc(100vh - 2rem);
     display: block;
     margin: 0 0.5rem;
     flex-direction: column;
   }
-  .footer a {
-    padding: 0 3px;
+
+  .query-container {
+    height: auto;
+    width: auto;
+    margin: 0;
   }
-  .map {
+
+  .results-containter {
     width: 100%;
   }
 }
