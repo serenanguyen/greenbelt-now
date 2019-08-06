@@ -28,7 +28,6 @@ code {
 }
 
 .map {
-  width: 100%;
   max-width: 640px;
 }
 
@@ -251,12 +250,16 @@ a {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1094px) {
   .App {
     min-height: calc(100vh - 2rem);
     display: block;
     margin: 0 0.5rem;
     flex-direction: column;
+  }
+
+  .map {
+    width: 100%;
   }
 
   .query-container {
