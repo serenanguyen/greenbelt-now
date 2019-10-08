@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
-export const LoadingContext = React.createContext();
-export const ResultsContext = React.createContext();
+import { ResultsContext } from './ResultsContext';
+import { LoadingContext } from './LoadingContext';
 
 const Store = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);

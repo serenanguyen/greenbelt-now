@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import Gauge from "react-svg-gauge";
 
-import { ResultsContext, LoadingContext } from "../Store";
+import { useResultsContext } from "../ResultsContext";
+import { useLoadingContext } from "../LoadingContext";
 
 const Results = () => {
-  const results = useContext(ResultsContext).state;
-  const isLoading = useContext(LoadingContext).state;
+  const results = useResultsContext().state;
+  const isLoading = useLoadingContext().state;
 
   const renderResults = () => {
     const location = results.location;

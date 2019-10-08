@@ -1,12 +1,13 @@
-import React, {useContext} from "react";
+import React from "react";
 
 import helpers from "../helpers";
 
-import { ResultsContext, LoadingContext } from '../Store';
+import { useResultsContext } from "../ResultsContext";
+import { useLoadingContext } from "../LoadingContext";
 
 const Map = () => {
-  const setIsLoading = useContext(LoadingContext).setState;
-  const setResults= useContext(ResultsContext).setState;
+  const setIsLoading = useLoadingContext().setState;
+  const setResults= useResultsContext().setState;
 
   const onClick = eventKey => {
       setIsLoading(true);

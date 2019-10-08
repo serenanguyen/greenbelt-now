@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import{ locations }from "../staticData";
 
 import helpers from "../helpers";
 
-import { ResultsContext, LoadingContext } from "../Store";
+import { useResultsContext } from "../ResultsContext";
+import { useLoadingContext } from "../LoadingContext";
 
 export default () => {
-  const setIsLoading = useContext(LoadingContext).setState;
-  const setResults = useContext(ResultsContext).setState;
-
+  const setIsLoading = useLoadingContext().setState;
+  const setResults = useResultsContext().setState;
+  console.log(setIsLoading)
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLocation, setLocation] = useState("Select Location");
 
@@ -36,6 +37,7 @@ export default () => {
   const handleSelect = e => {
     const locationID = e.currentTarget.dataset.id;
     // run getWaterData if new location is selected
+
     if (selectedLocation !== locations[locationID]) {
       setLocation(locationID);
       setIsLoading(true);
