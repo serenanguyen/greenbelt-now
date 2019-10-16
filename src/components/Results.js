@@ -63,9 +63,7 @@ const Results = () => {
   const renderLoading = () => {
     return (
       <div className="loading">
-        <div className="droplet" />
-        <div className="droplet" />
-        <div className="droplet" />
+        {Array(3).fill(<div className="droplet" />)}
       </div>
     );
   };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { get } from "lodash";
 
 import { locations, gaugeLocations } from "./staticData";
 
@@ -25,13 +26,15 @@ const helpers = {
 
         // gauge reference
         const gaugeID = gaugeLocations[locationID];
-        waterData.gaugeReference = `Water data is being pulled from the gauge locatated at ${locations[gaugeID].name}.`
-         
+        waterData.gaugeReference = `Water data is being pulled from the gauge locatated at ${
+          locations[gaugeID].name
+        }.`;
+
         const dataPoints = response.data.value.timeSeries;
 
         dataPoints.forEach(data => {
-          const dataType = data.variable.variableDescription;
-          const value = data.values[0].value[0].value;
+          const dataType = get(data, "variable.variableDescription");
+          const value = get(data, "values[0].value[0].value");
 
           if (dataType.includes("Discharge")) {
             waterData.discharge = value;
@@ -58,7 +61,7 @@ const helpers = {
         return waterData;
       })
       .catch(error => {
-        return waterData.error = error;
+        return (waterData.error = error);
       });
   }
 };

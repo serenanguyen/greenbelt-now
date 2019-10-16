@@ -1,16 +1,17 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 
 import helpers from "../helpers";
 
-import { ResultsContext, LoadingContext } from '../Store';
+import { ResultsContext, LoadingContext } from "../Store";
 
 const Map = () => {
   const setIsLoading = useContext(LoadingContext).setState;
-  const setResults= useContext(ResultsContext).setState;
+  const setResults = useContext(ResultsContext).setState;
 
   const onClick = eventKey => {
-      setIsLoading(true);
-      helpers.getWaterData(eventKey.target.id)
+    setIsLoading(true);
+    helpers
+      .getWaterData(eventKey.target.id)
       .then(response => {
         setIsLoading(false);
         setResults(response);
@@ -18,12 +19,17 @@ const Map = () => {
       .catch(error => {
         setIsLoading(false);
         setResults(error);
-    })
+      });
   };
   return (
     <div className="fadeInDown">
       <h1>GREENBELT NOW</h1>
-      <img src="https://i.imgur.com/5xW6mRh.png" className="map" alt="greenbelt-map" useMap="#Map" />
+      <img
+        src="https://i.imgur.com/5xW6mRh.png"
+        className="map"
+        alt="greenbelt-map"
+        useMap="#Map"
+      />
       <map name="Map" id="Map">
         <area
           alt="Lost Creek"
@@ -113,6 +119,6 @@ const Map = () => {
       </p>
     </div>
   );
-}
+};
 
 export default Map;
