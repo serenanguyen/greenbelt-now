@@ -11,7 +11,7 @@ export default () => {
     weather.setCity("Austin");
     weather.setUnits("imperial");
 
-    weather.setAPPID("42ebbe7c726c3fc801edf7558521481b");
+    weather.setAPPID(process.env.REACT_APP_WEATHER_KEY);
 
     weather.getAllWeather(function(err, res) {
       if (err) {

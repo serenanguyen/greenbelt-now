@@ -5,6 +5,8 @@ import App from "./App";
 import Store from "./Store";
 import * as serviceWorker from "./serviceWorker";
 
+require('dotenv').config()
+
 const Index = () => {
   return (
     // Store contains context providers which is then rendering App inside
