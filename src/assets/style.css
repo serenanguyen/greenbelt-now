@@ -48,6 +48,28 @@ code {
   right: 0;
   bottom: 0;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ad-container {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 100px;
+  font-weight: bold;
+}
+
+.greenbelt-logo {
+  height: inherit;
+  width: 140px;
+  background: url("./greenbelt-logo.png") no-repeat center center;
+  background-size: contain;
+}
+
+.button-container {
   height: 2rem;
   display: flex;
   justify-content: center;
@@ -273,5 +295,9 @@ a {
 
   .results-containter {
     width: 100%;
+  }
+
+  .footer {
+    position: inherit;
   }
 }
